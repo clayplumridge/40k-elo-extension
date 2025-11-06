@@ -1,0 +1,11 @@
+{
+    "manifest_version": 3,
+    "version": "1.0.0",
+    "name": "40k ELO Annotator",
+    "content_scripts": [
+        {
+            "matches": ["https://www.bestcoastpairings.com/event/*"],
+            "js": ["assets/index.js"]
+        }
+    ]
+}
