@@ -17,11 +17,15 @@ const rows = worksheet.getRows(2, worksheet.rowCount)
     })
 );
 
+if(!rows) {
+    throw new Error('Failed to produce any rows');
+}
+
 if(!fs.existsSync('./out')) {
     fs.mkdirSync('./out');
 }
 
-fs.writeFile('./out/elo.json', JSON.stringify(rows?.slice(0, 5), null, 2), err => {
+fs.writeFile('./out/elo.json', JSON.stringify(rows, null, 2), err => {
     if(err) {
         console.error(err);
     }
