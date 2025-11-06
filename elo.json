@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Josh Roberts",
+    "rank": 1,
+    "elo": 2104.9,
+    "record": {
+      "wins": 218,
+      "losses": 36,
+      "draws": 4
+    }
+  },
+  {
+    "name": "Wesley St. Hines",
+    "rank": 2,
+    "elo": 2100.9,
+    "record": {
+      "wins": 79,
+      "losses": 3,
+      "draws": 1
+    }
+  },
+  {
+    "name": "Innes Wilson",
+    "rank": 3,
+    "elo": 2093.3,
+    "record": {
+      "wins": 230,
+      "losses": 29,
+      "draws": 6
+    }
+  },
+  {
+    "name": "Folger Pyles",
+    "rank": 4,
+    "elo": 2074.9,
+    "record": {
+      "wins": 123,
+      "losses": 13,
+      "draws": 1
+    }
+  },
+  {
+    "name": "Conan Jennings",
+    "rank": 5,
+    "elo": 2047.9,
+    "record": {
+      "wins": 107,
+      "losses": 17,
+      "draws": 0
+    }
+  }
+]
