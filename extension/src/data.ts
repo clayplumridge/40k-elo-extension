@@ -13,17 +13,15 @@ export type DataTable = Map<string, DataRow[]>;
 
 export function toTable(rows: DataRow[]): DataTable {
   return rows.reduce((table, row) => {
-    // For some reason one row has object as the type
     if(typeof row.name !== "string") {
-      console.log(row);
       return table;
     }
 
-    const base = table.get(row.name) ?? [];
+    const base = table.get(row.name.toLowerCase()) ?? [];
 
-    table.set(row.name, [
+    table.set(row.name.toLowerCase(), [
       ...base,
-      { ...row, name: row.name },
+      { ...row, name: row.name.toLowerCase() },
     ]);
     return table;
   }, new Map<string, DataRow[]>());
