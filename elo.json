@@ -358148,15 +358148,5 @@
       "losses": 102,
       "draws": 0
     }
-  },
-  {
-    "name": null,
-    "rank": null,
-    "elo": null,
-    "record": {
-      "wins": null,
-      "losses": null,
-      "draws": null
-    }
   }
 ]
