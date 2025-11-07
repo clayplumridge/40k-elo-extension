@@ -1,6 +1,7 @@
 import { toTable, type DataRow } from "./data";
 import type { TabHandler } from "./tab_handlers/handler";
 import { PairingsTabHandler } from "./tab_handlers/pairings";
+import { PlacingsTabHandler } from "./tab_handlers/placings";
 import { RosterTabHandler } from "./tab_handlers/roster";
 import {urlWatcher} from "./watchers/url_watcher";
 
@@ -26,6 +27,7 @@ fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {cache: "no-
 const handlers = new Map<string, TabHandler>(
   [
     ["roster", new RosterTabHandler()],
-    ["pairings", new PairingsTabHandler()]
+    ["pairings", new PairingsTabHandler()],
+    ["placings", new PlacingsTabHandler()]
   ]
 );
