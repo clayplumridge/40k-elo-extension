@@ -1,7 +1,8 @@
 import { toTable, type DataRow } from "./data";
 import type { TabHandler } from "./tab_handlers/handler";
+import { PairingsTabHandler } from "./tab_handlers/pairings";
 import { RosterTabHandler } from "./tab_handlers/roster";
-import {urlWatcher} from "./url_watcher";
+import {urlWatcher} from "./watchers/url_watcher";
 
 fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {cache: "no-store"})
   .then(async response => (await response.json()) as DataRow[])
@@ -24,6 +25,7 @@ fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {cache: "no-
 
 const handlers = new Map<string, TabHandler>(
   [
-    ["roster", new RosterTabHandler()]
+    ["roster", new RosterTabHandler()],
+    ["pairings", new PairingsTabHandler()]
   ]
 );

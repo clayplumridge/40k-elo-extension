@@ -1,5 +1,6 @@
 import type { DataTable } from "../data";
-import { watchForElement } from "../element_watcher";
+import { isDefined } from "../util";
+import { watchForElement } from "../watchers/element_watcher";
 import type { TabHandler } from "./handler";
 
 export class RosterTabHandler implements TabHandler {
@@ -20,10 +21,11 @@ export class RosterTabHandler implements TabHandler {
       return;
     }
 
-    const updateRows = () => {
+    const interval = setInterval(() => {
       const rowContainers = rowContainer.querySelectorAll(
         ".MuiGrid-item > .MuiGrid-container"
       );
+
       if (rowContainers.length <= 0) {
         return;
       }
@@ -56,13 +58,10 @@ export class RosterTabHandler implements TabHandler {
         div.textContent = `ELO: ${elo}`;
         nameNode.after(div);
       });
-    };
+    }, 200);
 
-    const interval = setInterval(updateRows, 200);
     return () => clearInterval(interval);
   }
 }
 
-function isDefined<T>(x: T | undefined): x is T {
-  return x !== undefined;
-}
+
