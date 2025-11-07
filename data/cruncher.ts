@@ -6,7 +6,7 @@ const workbook = await base.xlsx.readFile("./elo.xlsx");
 const worksheet = workbook.worksheets[0];
 const rows = worksheet.getRows(2, worksheet.rowCount - 1)
     ?.map(row => ({
-        name: row.getCell(3).value,
+        name: `${row.getCell(3).value}`,
         rank: row.getCell(1).value,
         elo: row.getCell(4).value,
         record: {

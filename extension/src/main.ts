@@ -3,7 +3,7 @@ import type { TabHandler } from "./tab_handlers/handler";
 import { RosterTabHandler } from "./tab_handlers/roster";
 import {urlWatcher} from "./url_watcher";
 
-fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json")
+fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {cache: "no-store"})
   .then(async response => (await response.json()) as DataRow[])
   .then(data => {
     const table = toTable(data);
