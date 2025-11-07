@@ -62,7 +62,7 @@ export class PairingsTabHandler implements TabHandler {
           div.id = "elo-marker";
           div.textContent = `ELO: ${elo}`;
           div.className = afterEl.className;
-          afterEl.before(div);
+          afterEl.after(div);
         });
       });
     });
