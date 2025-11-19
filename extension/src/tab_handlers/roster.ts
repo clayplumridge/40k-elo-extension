@@ -38,7 +38,9 @@ export class RosterTabHandler implements TabHandler {
             return undefined;
           }
 
-          const eloList = table.get(name.toLowerCase())?.map((x) => Math.round(x.elo));
+          const eloList = table
+            .get(name.toLowerCase())
+            ?.map((x) => Math.round(x.elo));
           const elo = eloList?.[0] ?? "Unknown";
 
           return {
@@ -63,5 +65,3 @@ export class RosterTabHandler implements TabHandler {
     return () => clearInterval(interval);
   }
 }
-
-

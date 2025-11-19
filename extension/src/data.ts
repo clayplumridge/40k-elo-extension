@@ -13,7 +13,7 @@ export type DataTable = Map<string, DataRow[]>;
 
 export function toTable(rows: DataRow[]): DataTable {
   return rows.reduce((table, row) => {
-    if(typeof row.name !== "string") {
+    if (typeof row.name !== "string") {
       return table;
     }
 
