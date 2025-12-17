@@ -14,7 +14,7 @@ fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {
 
     urlWatcher((newValue) => {
       const url = new URL(newValue);
-      const activeTab = url.searchParams.get("active_tab");
+      const activeTab = url.searchParams.get("active_tab") as TabName;
 
       if (activeTab) {
         const handler = handlers.get(activeTab);
@@ -22,11 +22,19 @@ fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {
         if (handler) {
           return handler.start(table);
         }
+      } else {
+        // Opening the event directly opens the Pairings tab, but doesn't set the active_tab param
+        const round = url.searchParams.get("round");
+        if (round !== undefined) {
+          return handlers.get("pairings")!.start(table);
+        }
       }
     });
   });
 
-const handlers = new Map<string, TabHandler>([
+type TabName = "roster" | "pairings" | "placings";
+
+const handlers = new Map<TabName, TabHandler>([
   ["roster", new RosterTabHandler()],
   ["pairings", new PairingsTabHandler()],
   ["placings", new PlacingsTabHandler()],
