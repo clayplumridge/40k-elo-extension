@@ -1,5 +1,5 @@
 import type { DataTable } from "../data";
-import { isDefined } from "../util";
+import { cleanUpName, isDefined } from "../util";
 import { watchForElement } from "../watchers/element_watcher";
 import type { TabHandler } from "./handler";
 
@@ -46,7 +46,7 @@ export class PairingsTabHandler implements TabHandler {
           const afterEl = playerCell.children.item(
             playerCell.children.length - 3
           );
-          const name = playerCell.children.item(0)?.textContent;
+          const name = cleanUpName(playerCell.children.item(0)?.textContent);
           if (!name || !afterEl) {
             return;
           }

@@ -1,5 +1,5 @@
 import type { DataTable } from "../data";
-import { isDefined } from "../util";
+import { cleanUpName, isDefined } from "../util";
 import { watchForElement } from "../watchers/element_watcher";
 import type { TabHandler } from "./handler";
 
@@ -33,7 +33,7 @@ export class RosterTabHandler implements TabHandler {
       const rows = Array.from(rowContainers.values())
         .map((container) => {
           const nameNode = container.querySelector("p");
-          const name = nameNode?.childNodes[0].textContent;
+          const name = cleanUpName(nameNode?.childNodes[0].textContent);
           if (!nameNode || !name) {
             return undefined;
           }

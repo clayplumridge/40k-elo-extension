@@ -1,4 +1,5 @@
 import type { DataTable } from "../data";
+import { cleanUpName } from "../util";
 import { watchForElement } from "../watchers/element_watcher";
 import type { TabHandler } from "./handler";
 
@@ -43,11 +44,11 @@ export class PlacingsTabHandler implements TabHandler {
           return;
         }
 
-        const name = (
+        const name = cleanUpName((
           nameSegments?.length > 1 ? nameSegments.slice(0, -1) : nameSegments
         )
           .join("")
-          .trim();
+          .trim());
         const eloList = table
           .get(name.toLowerCase())
           ?.map((x) => Math.round(x.elo));
