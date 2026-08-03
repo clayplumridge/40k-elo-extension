@@ -8,11 +8,11 @@ const rows = worksheet.getRows(2, worksheet.rowCount - 1)
     ?.map(row => ({
         name: `${row.getCell(3).value}`,
         rank: row.getCell(1).value,
-        elo: row.getCell(4).value,
+        elo: row.getCell(9).value,
         record: {
-            wins: row.getCell(6).value,
-            losses: row.getCell(7).value,
-            draws: row.getCell(8).value
+            wins: row.getCell(4).value,
+            losses: row.getCell(5).value,
+            draws: row.getCell(6).value
         }
     })
 );
