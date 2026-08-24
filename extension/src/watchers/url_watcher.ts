@@ -6,11 +6,14 @@ export function urlWatcher(
   let lastKnownValue: string | undefined = undefined;
   let teardownFn: TeardownFn | undefined = undefined;
 
-  setInterval(() => {
+  const handleNavigate = (ev: NavigateEvent) => {
     if (location.href !== lastKnownValue) {
-      lastKnownValue = location.href;
+      lastKnownValue = ev.destination.url;
       teardownFn && teardownFn();
       teardownFn = onChange(lastKnownValue);
     }
-  }, 100);
+  }
+
+  navigation.addEventListener("navigate", handleNavigate);
+  return () => navigation.removeEventListener("navigate", handleNavigate);
 }
