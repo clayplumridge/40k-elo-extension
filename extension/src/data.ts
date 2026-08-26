@@ -9,20 +9,31 @@ export interface DataRow {
   };
 }
 
-export type DataTable = Map<string, DataRow[]>;
+export interface EloResponse {
+  publishedTimestamp: number;
+  elo: DataRow[];
+}
 
-export function toTable(rows: DataRow[]): DataTable {
-  return rows.reduce((table, row) => {
-    if (typeof row.name !== "string") {
+export interface DataTable {
+  publishedTimestamp: number;
+  elo: Map<string, DataRow[]>;
+}
+
+export function toTable(response: EloResponse): DataTable {
+  return {
+    publishedTimestamp: response.publishedTimestamp,
+    elo: response.elo.reduce((table, row) => {
+      if (typeof row.name !== "string") {
+        return table;
+      }
+
+      const base = table.get(row.name.toLowerCase()) ?? [];
+
+      table.set(row.name.toLowerCase(), [
+        ...base,
+        { ...row, name: row.name.toLowerCase() },
+      ]);
       return table;
-    }
-
-    const base = table.get(row.name.toLowerCase()) ?? [];
-
-    table.set(row.name.toLowerCase(), [
-      ...base,
-      { ...row, name: row.name.toLowerCase() },
-    ]);
-    return table;
-  }, new Map<string, DataRow[]>());
+    }, new Map<string, DataRow[]>())
+  };
 }

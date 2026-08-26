@@ -1,4 +1,4 @@
-import { toTable, type DataRow } from "./data";
+import { toTable, type EloResponse } from "./data";
 import type { TabHandler } from "./tab_handlers/handler";
 import { PairingsTabHandler } from "./tab_handlers/pairings";
 import { PlacingsTabHandler } from "./tab_handlers/placings";
@@ -8,7 +8,7 @@ import { urlWatcher } from "./watchers/url_watcher";
 fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {
   cache: "no-store",
 })
-  .then(async (response) => (await response.json()) as DataRow[])
+  .then(async (response) => (await response.json()) as EloResponse)
   .then((data) => {
     const table = toTable(data);
 

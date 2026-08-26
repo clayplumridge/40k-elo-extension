@@ -17,7 +17,7 @@ export class RosterTabHandler implements TabHandler {
           return undefined;
         }
 
-        const eloList = table
+        const eloList = table.elo
           .get(name.toLowerCase())
           ?.map((x) => Math.round(x.elo));
         const elo = eloList?.[0] ?? "Unknown";

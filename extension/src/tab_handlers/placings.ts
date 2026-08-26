@@ -29,7 +29,7 @@ export class PlacingsTabHandler implements TabHandler {
       )
         .join("")
         .trim());
-      const eloList = table
+      const eloList = table.elo
         .get(name.toLowerCase())
         ?.map((x) => Math.round(x.elo));
       const elo = eloList?.[0] ?? "Unknown";

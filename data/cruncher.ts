@@ -15,18 +15,23 @@ const rows = worksheet.getRows(2, worksheet.rowCount - 1)
             draws: row.getCell(6).value
         }
     })
-);
+    );
 
-if(!rows) {
+if (!rows) {
     throw new Error('Failed to produce any rows');
 }
 
-if(!fs.existsSync('./out')) {
+if (!fs.existsSync('./out')) {
     fs.mkdirSync('./out');
 }
 
-fs.writeFile('./out/elo.json', JSON.stringify(rows, null, 2), err => {
-    if(err) {
+const output = {
+    publishedTimestamp: Date.now(),
+    elo: rows
+};
+
+fs.writeFile('./out/elo.json', JSON.stringify(output, null, 2), err => {
+    if (err) {
         console.error(err);
     }
 });

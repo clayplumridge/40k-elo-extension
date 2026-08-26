@@ -7,12 +7,10 @@
     "esModuleInterop": true,
     "noImplicitAny": true,
     "outDir": "./out",
-    "rootDir": "./"
+    "rootDir": "./",
+    "types": ["node"]
   },
   "include": [
     "cruncher.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
 }

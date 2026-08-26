@@ -42,7 +42,7 @@ export class PairingsTabHandler implements TabHandler {
           return;
         }
 
-        const eloList = table
+        const eloList = table.elo
           .get(name.toLowerCase())
           ?.map((x) => Math.round(x.elo));
         const elo = eloList?.[0] ?? "Unknown";

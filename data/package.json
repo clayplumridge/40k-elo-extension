@@ -7,7 +7,7 @@
     "crunch": "npx tsx cruncher.ts"
   },
   "devDependencies": {
-    "@types/node": "^24.10.0",
+    "@types/node": "^26.0.0",
     "typescript": "~5.9.3"
   },
   "dependencies": {
