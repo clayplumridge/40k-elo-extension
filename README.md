@@ -8,6 +8,10 @@ This project creates a FireFox / Chrome Extension that annotates various screens
 
 ![Screenshot of the Placings tab of Best Coast Pairings with the Elo of each player added to their row.](assets/images/placings.png)
 
+There is also limited specialized support for Team Events; on the **Roster tab only**, the Extension displays the average and max Elo for each team.
+
+![Screenshot of the Roster tab of Best Coast Pairings for a Team Event, with the Elo of each player added to their row, and the average and max Elo for the team added to the header row](assets/images/roster-teams.png)
+
 ## FAQ
 
 ### Where do these Elo ratings come from?
