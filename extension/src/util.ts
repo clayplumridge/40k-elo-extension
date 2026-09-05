@@ -11,7 +11,7 @@ export function cleanUpName(name: string | null | undefined) {
   }
 
   // Remove all double-spaces
-  while (name.indexOf("  ") > -1) {
+  while (name.includes("  ")) {
     name = name.replace("  ", " ");
   }
 

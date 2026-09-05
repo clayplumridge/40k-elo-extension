@@ -1,0 +1,21 @@
+{
+    "name": "40k-elo-extension",
+    "version": "1.0.0",
+    "private": true,
+    "license": "GPL-3.0-only",
+    "type": "module",
+    "scripts": {
+        "lint": "eslint .",
+        "lint:fix": "eslint . --fix"
+    },
+    "devDependencies": {
+        "@eslint/js": "^9.39.4",
+        "@stylistic/eslint-plugin": "^5.10.0",
+        "eslint": "^10.0.0",
+        "eslint-plugin-import-newlines": "^2.0.0",
+        "eslint-plugin-perfectionist": "^5.9.1",
+        "eslint-plugin-simple-import-sort": "^13.0.0",
+        "typescript": "^6.0.3",
+        "typescript-eslint": "^8.69.0"
+    }
+}

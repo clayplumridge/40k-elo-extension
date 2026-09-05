@@ -4,12 +4,14 @@ import type { TabHandler } from "./handler";
 
 export class RosterTabHandler implements TabHandler {
   apply(eloTable: DataTable) {
-    const tableContainer = document.body.querySelector('[role="tabpanel"]')?.querySelector(".MuiGrid-item")?.children.item(1);
+    const tableContainer = document.body.querySelector("[role=\"tabpanel\"]")
+      ?.querySelector(".MuiGrid-item")?.children.item(1);
     if (!tableContainer) {
       return;
     }
 
-    const testTeamHeading = tableContainer.children.item(0)?.querySelector(".MuiBox-root");
+    const testTeamHeading = tableContainer.children.item(0)
+      ?.querySelector(".MuiBox-root");
     if (testTeamHeading) {
       renderTeams(eloTable, tableContainer);
     } else {
@@ -21,36 +23,38 @@ export class RosterTabHandler implements TabHandler {
 function renderTeams(eloTable: DataTable, tableContainer: Element) {
   const teamContainers = tableContainer.querySelectorAll(":scope > .MuiGrid-item");
 
-  for (let teamContainer of teamContainers) {
+  for (const teamContainer of teamContainers) {
     const teamHeaderCell = teamContainer.children.item(0)?.children.item(0) as HTMLDivElement | undefined;
     if (!teamHeaderCell) {
       continue;
     }
 
     const playerCells = teamContainer.querySelectorAll(":scope > .MuiGrid-item");
-    const details = Array.from(playerCells).map(cell => getDetailsForPlayerCell(eloTable, cell)).filter(isDefined);
+    const details = Array.from(playerCells)
+      .map(cell => getDetailsForPlayerCell(eloTable, cell))
+      .filter(isDefined);
     const averageElo = (details.reduce((prev, curr) => prev + curr?.eloNumber, 0) / details.length).toFixed(0);
     const maxElo = details.reduce((prev, curr) => prev > curr.eloNumber ? prev : curr.eloNumber, 0);
 
     details.forEach(renderPlayerCell);
 
     const eloContainer = teamHeaderCell.querySelector("#elo-container") as HTMLDivElement | undefined ?? document.createElement("div");
-    eloContainer.id = "elo-container"
+    eloContainer.id = "elo-container";
     eloContainer.style.display = "flex";
     eloContainer.style.flexDirection = "column";
     eloContainer.style.alignItems = "flex-end";
 
-    const existingAvgDiv = eloContainer.querySelector('#avg-elo');
+    const existingAvgDiv = eloContainer.querySelector("#avg-elo");
     const avgDiv = existingAvgDiv ?? document.createElement("div");
-    avgDiv.id = 'avg-elo';
+    avgDiv.id = "avg-elo";
     avgDiv.textContent = `Avg ELO: ${averageElo}`;
     if (!existingAvgDiv) {
       eloContainer.appendChild(avgDiv);
     }
 
-    const existingMaxDiv = eloContainer.querySelector('#max-elo');
+    const existingMaxDiv = eloContainer.querySelector("#max-elo");
     const maxDiv = existingMaxDiv ?? document.createElement("div");
-    maxDiv.id = 'max-elo';
+    maxDiv.id = "max-elo";
     maxDiv.textContent = `Max ELO: ${maxElo}`;
     if (!existingMaxDiv) {
       eloContainer.appendChild(maxDiv);
@@ -80,7 +84,7 @@ function getDetailsForPlayerCell(eloTable: DataTable, cell: Element) {
 
   const eloList = eloTable.elo
     .get(name.toLowerCase())
-    ?.map((x) => Math.round(x.elo));
+    ?.map(x => Math.round(x.elo));
 
   return {
     cell,

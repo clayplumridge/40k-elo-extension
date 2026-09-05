@@ -34,6 +34,6 @@ export function toTable(response: EloResponse): DataTable {
         { ...row, name: row.name.toLowerCase() },
       ]);
       return table;
-    }, new Map<string, DataRow[]>())
+    }, new Map<string, DataRow[]>()),
   };
 }
