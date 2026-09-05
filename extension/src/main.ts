@@ -3,6 +3,7 @@ import type { TabHandler } from "./tab_handlers/handler";
 import { PairingsTabHandler } from "./tab_handlers/pairings";
 import { PlacingsTabHandler } from "./tab_handlers/placings";
 import { RosterTabHandler } from "./tab_handlers/roster";
+import { throttle } from "./util";
 import { urlWatcher } from "./watchers/url_watcher";
 
 fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {
@@ -16,7 +17,7 @@ fetch("https://clayplumridge.github.io/40k-elo-extension/elo.json", {
       const handler = resolveHandler(newValue);
 
       if (handler) {
-        const observer = new MutationObserver(debounce(() => handler.apply(table), 10));
+        const observer = new MutationObserver(throttle(() => handler.apply(table), 50));
         observer.observe(document.body, { childList: true, subtree: true });
         return () => observer.disconnect();
       }
@@ -35,18 +36,6 @@ function resolveHandler(urlString: string): TabHandler | undefined {
   if (round !== undefined) {
     return handlers.pairings;
   }
-}
-
-// eslint-disable-next-line @typescript-eslint/no-explicit-any
-function debounce<T extends (...args: any[]) => any>(func: T, delay: number): (...args: Parameters<T>) => Promise<ReturnType<T>> {
-  let debounceInterval: number | undefined = undefined;
-
-  return (...args) => {
-    clearTimeout(debounceInterval);
-    return new Promise(resolve => {
-      debounceInterval = setTimeout(() => resolve(func(args)), delay);
-    });
-  };
 }
 
 type TabName = "roster" | "pairings" | "placings";
