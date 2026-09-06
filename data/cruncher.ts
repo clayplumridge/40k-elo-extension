@@ -34,3 +34,5 @@ fs.writeFile("./out/elo.json", JSON.stringify(output, null, 2), err => {
     console.error(err);
   }
 });
+
+console.log("Cruncher complete. If you didn't see an error, that means it worked");
