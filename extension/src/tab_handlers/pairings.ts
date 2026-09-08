@@ -52,7 +52,7 @@ export class PairingsTabHandler implements TabHandler {
 
             const div =
               playerCell.querySelector("#elo-marker") ??
-          document.createElement("div");
+              document.createElement("div");
             div.id = "elo-marker";
             div.textContent = `ELO: ${elo}`;
             div.className = afterEl.className;

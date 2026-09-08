@@ -43,11 +43,11 @@ export class PlacingsTabHandler implements TabHandler {
 
         const div =
           container.querySelector("#elo-marker") ??
-        document.createElement("div");
+          document.createElement("div");
         div.id = "elo-marker";
         div.textContent = `ELO: ${elo}`;
         div.className = factionNode?.className ?? "";
-        nameNode.after(div);
+        nameNode.after(div); 
       });
   }
 }
